@@ -5,6 +5,8 @@
 /public/js
 storage/*
 !storage/.gitkeep
+!storage/checklist
+!storage/completed
 storage/checklist/*
 storage/completed/*
 !storage/checklist/.gitkeep
