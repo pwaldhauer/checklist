@@ -1,0 +1,7 @@
+/vendor
+/node_modules
+/.idea
+.DS_Store
+/public/js
+storage/*
+!storage/.gitkeep
