@@ -1,7 +1,6 @@
 import axios from 'axios';
 import Vue from 'vue';
 import nanoid from 'nanoid';
-import sortBy from 'lodash';
 
 const state = {
 

@@ -2,6 +2,10 @@
   "name": "checklist",
   "version": "1.0.0",
   "description": "",
+  "scripts": {
+    "server": "cd public && php -S 0.0.0.0:9800",
+    "watch": "webpack -w"
+  },
   "main": "index.js",
   "author": "",
   "license": "MIT",

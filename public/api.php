@@ -10,7 +10,7 @@ $app = new \Slim\App;
 
 $app->post('/checklist', function (Request $request, Response $response, array $args) {
 
-    $content = json_Decode($request->getBody()->getContents(), true);
+    $content = json_decode($request->getBody()->getContents(), true);
 
     file_put_contents(sprintf('../storage/checklist/%s.json', $content['id']), json_encode($content));
 
