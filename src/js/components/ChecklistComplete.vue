@@ -14,7 +14,7 @@
 
             <div class="form-check form-check-inline">
                 <input :id="item.title" type="checkbox" class="form-check-input" v-model="item.checked">
-                <label class="form-check-label" :for="item.title">{{item.title}}</label>
+                <label class="form-check-label" :for="item.title" v-html="parseTitle(item.title)"></label>
             </div>
         </div>
 
@@ -30,6 +30,7 @@
 
 <script>
 
+    import { markdown } from 'markdown';
     import nanoid from 'nanoid';
 
     export default {
@@ -46,11 +47,15 @@
 
         computed: {
             checklist() {
-                return this.$store.state.checklists[this.$route.params.id];
+                return this.$store.state.checklists[this.$route.params.id] || {items: []};
             }
         },
 
         methods: {
+            parseTitle(title) {
+                return markdown.toHTML(title);
+            },
+
             updateItem(id, value) {
 
                 console.log(id, value);
@@ -74,15 +79,22 @@
 
         },
 
-        mounted() {
-            this.checklist.items.forEach(e => {
-                const i = {
-                    title: e.title,
-                    checked: false,
-                };
+        watch: {
+            'checklist': function() {
+                this.check.items = [];
+                this.checklist.items.forEach(e => {
+                    const i = {
+                        title: e.title,
+                        checked: false,
+                    };
 
-                this.check.items.push(i);
-            })
+                    this.check.items.push(i);
+                })
+            }
+        },
+
+        mounted() {
+
         }
     }
 </script>

@@ -28,6 +28,13 @@ const router = new VueRouter({
     ]
 });
 
+router.beforeEach((to, from, next) => {
+    // quickfix for detail pages
+    store.dispatch('loadChecklists').then(() => {
+        next();
+    });
+});
+
 
 new Vue({
     el: '#app',

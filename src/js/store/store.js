@@ -116,6 +116,10 @@ const mutations = {
     updateChecklistItem(state, {id, itemId, field, value}) {
         const item = state.checklists[id].items.find(e => e.id === itemId);
         Vue.set(item, field, value);
+    },
+
+    updateChecklistItemOrder(state, {id, list}) {
+        Vue.set(state.checklists[id], 'items', list);
     }
 
 };

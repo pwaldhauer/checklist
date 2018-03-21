@@ -28,6 +28,7 @@
     "jquery": "^3.2.1",
     "local-storage-fallback": "^4.0.2",
     "lodash": "^4.17.5",
+    "markdown": "^0.5.0",
     "moment": "^2.21.0",
     "momentjs": "^2.0.0",
     "nanoid": "^1.0.2",

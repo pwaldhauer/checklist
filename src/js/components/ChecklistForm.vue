@@ -21,21 +21,23 @@
                 <button @click.prevent="addItem" class="btn btn-primary">Neuen Punkt hinzufügen</button>
             </div>
 
-            <div v-for="item in checklist.items">
+            <draggable v-model="checklistItems">
+                <div v-for="item in checklistItems">
 
-                <div class="row mb-2">
-                    <div class="col-sm-10">
-                        <input class="form-control" id="check_title" type="text" :value="item.title"
-                               @input="updateFieldItem(item.id, 'title', $event.target.value)">
+                    <div class="row mb-2">
+                        <div class="col-sm-10">
+                            <input class="form-control" id="check_title" type="text" :value="item.title"
+                                   @input="updateFieldItem(item.id, 'title', $event.target.value)">
 
-                    </div>
+                        </div>
 
-                    <div class="col-sm-2">
-                        <button @click.prevent="removeItem(item.id)" class="btn btn-danger">Löschen</button>
+                        <div class="col-sm-2">
+                            <button @click.prevent="removeItem(item.id)" class="btn btn-danger">Löschen</button>
+                        </div>
                     </div>
                 </div>
 
-            </div>
+            </draggable>
 
 
         </div>
@@ -49,6 +51,8 @@
 </template>
 
 <script>
+    import draggable from 'vuedraggable';
+
     export default {
         name: 'ChecklistForm',
         props: {
@@ -58,9 +62,22 @@
             items: Array,
         },
 
+        components: {
+            draggable
+        },
         computed: {
             checklist() {
                 return this.$store.state.checklists[this.$route.params.id];
+            },
+
+            checklistItems: {
+                get() {
+                    return this.checklist.items;
+                },
+
+                set(v) {
+                    this.$store.commit('updateChecklistItemOrder', {id: this.$route.params.id, list: v});
+                }
             }
         },
 

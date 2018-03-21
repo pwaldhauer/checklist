@@ -3,7 +3,10 @@
 
     <div>
         <h2>Checklisten</h2>
+
         <ul class="list-group mb-5">
+
+
             <li v-for="list in checklists" class="list-group-item">
                 <div class="row">
                     <div class="col-sm-8">   {{list.title}}</div>
@@ -33,6 +36,7 @@
 
     export default {
         name: 'ChecklistList',
+
 
         computed: {
             checklists() {
