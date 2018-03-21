@@ -27,14 +27,14 @@ const router = new VueRouter({
         {name: 'complete', path: '/complete/:id', component: ChecklistComplete},
     ]
 });
-
+/*
 router.beforeEach((to, from, next) => {
     // quickfix for detail pages
     store.dispatch('loadChecklists').then(() => {
         next();
     });
 });
-
+*/
 
 new Vue({
     el: '#app',

@@ -67,7 +67,7 @@
         },
         computed: {
             checklist() {
-                return this.$store.state.checklists[this.$route.params.id];
+                return this.$store.state.checklists[this.$route.params.id] || {};
             },
 
             checklistItems: {

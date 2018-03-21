@@ -30,7 +30,7 @@
 
 <script>
 
-    import { markdown } from 'markdown';
+    import {markdown} from 'markdown';
     import nanoid from 'nanoid';
 
     export default {
@@ -80,16 +80,19 @@
         },
 
         watch: {
-            'checklist': function() {
-                this.check.items = [];
-                this.checklist.items.forEach(e => {
-                    const i = {
-                        title: e.title,
-                        checked: false,
-                    };
+            'checklist': {
+                immediate: true,
+                handler: function () {
+                    this.check.items = [];
+                    this.checklist.items.forEach(e => {
+                        const i = {
+                            title: e.title,
+                            checked: false,
+                        };
 
-                    this.check.items.push(i);
-                })
+                        this.check.items.push(i);
+                    })
+                }
             }
         },
 
